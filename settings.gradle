@@ -1,0 +1,2 @@
+rootProject.name='MS_Client'
+include ':app', ':pedrovlc', ':libvlc'
