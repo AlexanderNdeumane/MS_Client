@@ -2,5 +2,7 @@
     <string name="app_name">MS_Client</string>
     <string name="start_player">Start player</string>
     <string name="stop_player">Stop player</string>
+    <string name="mqtt_connect">Connect</string>
+    <string name="mqtt_disconnect">Disconnect</string>
     <string name="yourendpoint">yourendpoint</string>
 </resources>
