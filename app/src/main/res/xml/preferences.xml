@@ -13,5 +13,5 @@
         android:id="@+id/s_notifications"
         android:defaultValue="false"
         android:key="key_notifications"
-        android:title="Switch preference" />
+        android:title="Motion notifications" />
 </PreferenceScreen>
