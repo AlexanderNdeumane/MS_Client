@@ -6,24 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tabLayout"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="NotSibling">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1db995"></android.support.design.widget.TabLayout>
-    </android.support.v4.view.ViewPager>
-
+        app:title="@string/app_name" />
 
 </android.support.constraint.ConstraintLayout>
