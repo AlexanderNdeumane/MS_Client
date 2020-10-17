@@ -4,11 +4,11 @@
     <EditTextPreference
         android:id="@+id/et_videoIp"
         android:defaultValue="false"
+        android:inputType="numberDecimal"
         android:key="key_serverIp"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Server IP"
-        android:inputType="numberDecimal"/>
+        android:title="Connect number" />
     <SwitchPreference
         android:id="@+id/s_notifications"
         android:defaultValue="false"

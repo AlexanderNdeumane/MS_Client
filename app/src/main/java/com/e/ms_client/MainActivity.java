@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
     }
     @Override
     public void onError() {
-        Toast.makeText(this, "Please connect to wifi network or enter correct Server IP in settings", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Please connect to wifi network or enter the correct connect number in settings", Toast.LENGTH_SHORT).show();
         vlcVideoLibrary = null;
     }
     @Override
