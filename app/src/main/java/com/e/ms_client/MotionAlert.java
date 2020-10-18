@@ -61,7 +61,7 @@ public class MotionAlert extends Service implements MqttCallback {
             }
         }
         else{
-            if(client != null){
+            if(client.isConnected()){
                 disconnectUnsubscribe();
             }
         }
@@ -106,7 +106,7 @@ public class MotionAlert extends Service implements MqttCallback {
             client.setCallback(this);
             client.subscribe(topic, 0);
         } catch (MqttException e) {
-            e.printStackTrace();
+
         }
     }
     public void disconnectUnsubscribe(){

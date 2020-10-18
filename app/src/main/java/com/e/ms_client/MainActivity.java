@@ -124,6 +124,11 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
     }
     public void notificationService() {
         Intent intent = new Intent(this, MotionAlert.class);
-        startService(intent);
+        try{
+            startService(intent);
+        }
+        catch (Exception e){
+
+        }
     }
 }
