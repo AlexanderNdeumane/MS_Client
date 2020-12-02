@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
     private String lastPartIp = ":554";
     SurfaceView surfaceView;
     private String[] options = new String[]{":fullscreen"};
+	/*
+	Method starts up the mobile app
+	*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -54,12 +57,11 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
         Stream(getPreferencesIp());
         notificationService();
     }
-    @Override
+	@Override
     protected void onStop() {
         super.onStop();
         vlcVideoLibrary = null;
-    }
-    protected void onRestart() {
+    }protected void onRestart() {
         super.onRestart();
         super.onStop();
         Stream(getPreferencesIp());
@@ -103,6 +105,10 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
     public void onBuffering(MediaPlayer.Event event) {
 
     }
+	/*
+	Method connects to the streaming server that allows the mobile
+	app to receive receive and view the live stream
+	*/
     public void Stream(String videoIp){
         try{
             surfaceView = findViewById(R.id.surfaceView);

@@ -46,6 +46,10 @@ public class MotionAlert extends Service implements MqttCallback {
     public IBinder onBind(Intent intent) {
         return null;
     }
+	/*
+	Method connects to the service that allows the mobile
+	app to receive mobile alerts
+	*/
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         SharedPreferences sharedPref =
@@ -61,7 +65,7 @@ public class MotionAlert extends Service implements MqttCallback {
             }
         }
         else{
-            if(client.isConnected()){
+            if(client !=null){
                 disconnectUnsubscribe();
             }
         }
