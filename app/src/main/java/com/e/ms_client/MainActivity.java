@@ -41,6 +41,7 @@ import org.videolan.libvlc.MediaPlayer;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements VlcListener{
+    //Variable declarations
     private VlcVideoLibrary vlcVideoLibrary;
     private String firstPartIp = "rtsp://192.168.";
     private String lastPartIp = ":554";
@@ -57,30 +58,54 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
         Stream(getPreferencesIp());
         notificationService();
     }
+    /*
+    Overrides onStop() method of VLC library
+    turns off the stream
+     */
 	@Override
     protected void onStop() {
         super.onStop();
         vlcVideoLibrary = null;
-    }protected void onRestart() {
+    }
+    /*
+    Method refreshes Connect number
+    and restarts the notification service
+     */
+    protected void onRestart() {
         super.onRestart();
         super.onStop();
         Stream(getPreferencesIp());
         notificationService();
     }
+    /*
+    Stops streaming video when the
+    main activity is paused
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void pauseStreaming() {
         vlcVideoLibrary = null;
     }
+    /*
+    Starts stream and notification service when main
+    activity restarts
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void resumeStreaming() {
         Stream(getPreferencesIp());
         notificationService();
     }
+    /*
+    Populates the menu with items
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
         return true;
     }
+    /*
+    Decides which activity is opened
+    depending on which menu item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -92,15 +117,26 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
                 return super.onOptionsItemSelected(item);
         }
     }
+    /*
+    Overrides onComplete() method of VLC library
+    shows text when it connects to the stream
+     */
     @Override
     public void onComplete() {
         Toast.makeText(this, "Playing", Toast.LENGTH_SHORT).show();
     }
+    /*
+    Overrides onError() method of VLC library
+    gives user a warning message when it fails to connect
+     */
     @Override
     public void onError() {
         Toast.makeText(this, "Please connect to wifi network or enter the correct connect number in settings", Toast.LENGTH_SHORT).show();
         vlcVideoLibrary = null;
     }
+    /*
+    Overrides onBuffering() method of VLC library
+     */
     @Override
     public void onBuffering(MediaPlayer.Event event) {
 
@@ -120,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
 
         }
     }
+    /*
+    Method gets the latest connect number
+    the user has put it in
+     */
     public String getPreferencesIp(){
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPref =
@@ -128,6 +168,10 @@ public class MainActivity extends AppCompatActivity implements VlcListener{
                 (SettingsActivity.KEY_SERVER_IP,"8.100");
         return serverIp;
     }
+    /*
+    Method starts the notification service
+    if the user enables notifications
+     */
     public void notificationService() {
         Intent intent = new Intent(this, MotionAlert.class);
         try{

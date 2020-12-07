@@ -71,16 +71,25 @@ public class MotionAlert extends Service implements MqttCallback {
         }
         return START_STICKY;
     }
+    /*
+    Destroys the activity when it is closed
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
         //Toast.makeText(this, "Service destroyed by user.", Toast.LENGTH_LONG).show();
     }
+    /*
+    Saves a log when connection is lost
+     */
     @Override
     public void connectionLost(Throwable cause) {
         Log.d(TAG, "connectionLost");
     }
-
+    /*
+    Activates notification if a message has been received from
+    the MQTT server
+     */
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         String payload = new String(message.getPayload());
@@ -90,12 +99,16 @@ public class MotionAlert extends Service implements MqttCallback {
         }
         Log.d(TAG, payload);
     }
-
+    /*
+    Saves a log when delivery of message is completed
+     */
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
         Log.d(TAG, "deliveryComplete");
     }
-
+    /*
+    Creates a MQTT client
+     */
     public void createClient(String ip) {
         try {
             client = new MqttClient(ip, Build.MODEL, new MemoryPersistence());
@@ -103,7 +116,10 @@ public class MotionAlert extends Service implements MqttCallback {
             e.printStackTrace();
         }
     }
-
+    /*
+    Connects client to the MQTT server and subscribes to
+    the topic
+     */
     public void connectSubscribe() {
         try {
             client.connect();
@@ -113,6 +129,10 @@ public class MotionAlert extends Service implements MqttCallback {
 
         }
     }
+    /*
+    Disconnects client to the MQTT server and unsubscribes from
+    the topic
+     */
     public void disconnectUnsubscribe(){
         try {
             client.unsubscribe(topic);
@@ -121,6 +141,9 @@ public class MotionAlert extends Service implements MqttCallback {
             e.printStackTrace();
         }
     }
+    /*
+    Activates notification of motion detected
+     */
     private void ActivateNotification() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

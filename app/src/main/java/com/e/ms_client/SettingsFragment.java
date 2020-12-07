@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
+    /*
+    defines the preferences of the settings screen
+     */
     @Override
     public void onCreatePreferences(Bundle savedInstanceState,
                                     String rootKey) {
